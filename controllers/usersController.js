@@ -86,12 +86,33 @@ async function registration(req, res, next) {
       };
   
       const token =  generateUserToken(data);
-      const userFirstName = user.firstName
       const userId = user.id
-      const userCart = user.cart
-      const userOrders = user.orders
+      const userFirstName = user.firstName
+      // const userLastName = user.lastName
+      // const userPhoneNumber = user.phoneNumber
+      // const userStreetAddress = user.streetAddress
+      // const userUnitApartment = user.unitApartment
+      // const userCity = user.city
+      // const userState = user.state
+      // const userCart = user.cart
+      // const userOrders = user.orders
 
-      res.json({ success: true, token, email, userFirstName, userId, userCart, userOrders});
+
+      res.json({ 
+        success: true, 
+        token, 
+        email, 
+        userFirstName, 
+        // userLastName,
+        // userPhoneNumber,
+        // userStreetAddress,
+        // userUnitApartment,
+        // userCity,
+        // userState,
+        // userId, 
+        // userCart, 
+        // userOrders
+      });
       console.log(token)
   
       return;
@@ -100,6 +121,52 @@ async function registration(req, res, next) {
       res.json({ success: false, message: error.toString() });
     }
   };
+
+
+  async function authtoken(req, res) {
+    console.log('!@-------req.decoded-------@!')
+    console.log(req.decoded.userData.userId)
+    
+    let foundUser = await User.findOne({id: req.decoded.userData.userId})
+
+    // you can re-issue the token to reset the expiration,
+    // this isn't less secure, it is a design decision that can be less secure
+    //
+    // let payload = {
+    //     id: foundUser._id,
+    //     email: foundUser.email
+    // }
+    // let token = await jwt.sign(payload, process.env.SUPER_SECRET_KEY, {expiresIn: 5*60})
+    // res.status(200).json({
+    //     email: foundUser.email,
+    //     message: "Successful Token Login!!",
+    //     token: token
+    // })
+
+    res.status(200).json({
+        id: foundUser.id,
+        email: foundUser.email,
+        firstName: foundUser.firstName,
+        lastName: foundUser.lastName,
+        phoneNumber : foundUser.phoneNumber,
+        streetAddress : foundUser.streetAddress,
+        unitApartment : foundUser.unitApartment,
+        city : foundUser.city,
+        state : foundUser.state,
+        cart : foundUser.cart,
+        orders : foundUser.orders,
+        message: "Successful Token Login!!"
+    })
+
+
+}
+
+
+
+
+
+
+
 
 
 
@@ -146,6 +213,7 @@ async function deleteUser(req, res, next){
   module.exports = {
     registration,
     login,
+    authtoken,
     updateUser,
     deleteUser
   };
