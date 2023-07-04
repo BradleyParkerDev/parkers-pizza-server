@@ -176,7 +176,7 @@ async function registration(req, res, next) {
 async function updateUser(req, res, next){
   const entryId = req.params.id;
   try {
-    if(req.body.password !== "")
+    if(req.body.password !== "" || req.body.password !== undefined)
     {
       const saltRounds = 5; // In a real application, this number would be somewhere between 5 and 10
       const passwordHash = await generatePasswordHash(req.body.password, saltRounds);
