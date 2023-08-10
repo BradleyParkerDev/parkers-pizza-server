@@ -13,6 +13,7 @@ const userSchema = new mongoose.Schema({
     unitApartment: String,
     city: String,
     state: String,
+    zipcode: Number,
     cart: [],
     orders:[],
     joinedDate: { type: Date, default: Date.now }

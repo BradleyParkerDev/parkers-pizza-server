@@ -21,6 +21,7 @@ async function registration(req, res, next) {
         const unitApartment = req.body.unitApartment;
         const city = req.body.city;
         const state = req.body.state;
+        const zipcode = req.body.zipcode;
 
         console.log(req.body)
         const saltRounds = 5; // In a real application, this number would be somewhere between 5 and 10
@@ -37,7 +38,8 @@ async function registration(req, res, next) {
         streetAddress: streetAddress,
         unitApartment: unitApartment,
         city: city,
-        state: state
+        state: state,
+        zipcode: zipcode
         });
 
         console.log(password)
@@ -153,6 +155,7 @@ async function registration(req, res, next) {
         unitApartment : foundUser.unitApartment,
         city : foundUser.city,
         state : foundUser.state,
+        zipcode: foundUser.zipcode,
         cart : foundUser.cart,
         orders : foundUser.orders,
         message: "Successful Token Login!!"
