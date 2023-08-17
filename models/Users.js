@@ -14,7 +14,7 @@ const userSchema = new mongoose.Schema({
     city: String,
     state: String,
     zipcode: Number,
-    cart: [],
+    cart: {},
     orders:[],
     joinedDate: { type: Date, default: Date.now }
 
