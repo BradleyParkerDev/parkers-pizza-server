@@ -10,7 +10,7 @@ router.post("/authtoken", auth.verifyToken,usersController.authtoken);
 
 router.post("/login", usersController.login);
 router.put("/update-user/:id", usersController.updateUser)
-router.put("/update-user-cart/:id", usersController.updateUserCart)
+
 router.delete("/delete-user/:id", usersController.deleteUser)
 
 

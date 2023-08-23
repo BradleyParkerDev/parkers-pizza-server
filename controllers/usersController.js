@@ -195,17 +195,6 @@ async function updateUser(req, res, next){
   }
 
 }
-async function updateUserCart(req, res, next){
-  const entryId = req.params.id;
-  console.log(req.body)
-  try {
-    const response = await User.updateOne({ id: entryId }, req.body);
-    res.json({success: true, userUpdates: response });
-  }catch(e){
-    console.log(e);
-  }
-
-}
 
 //Delete
 async function deleteUser(req, res, next){
@@ -230,6 +219,5 @@ async function deleteUser(req, res, next){
     login,
     authtoken,
     updateUser,
-    updateUserCart,
     deleteUser
   };

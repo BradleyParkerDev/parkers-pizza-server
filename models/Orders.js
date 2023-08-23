@@ -1,14 +1,21 @@
 const mongoose = require("mongoose");
 const { v4: uuidv4 } = require("uuid");
 
-
 const orderSchema = new mongoose.Schema({
-    id: {type: String, default: uuidv4},
-    userId:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User"
-    },
-    items:[],
+    orderId: String,
+    orderType: String,
+    userId: String,
+    firstName: String,
+    lastName: String,
+    phoneNumber: String,
+    streetAddress: String,
+    unitApartment: String,
+    city: String,
+    state: String,
+    zipcode: Number,
+    pizzas:{},
+    items:{},
+    specialInstructions: String,
     total: Number,
     dateOrdered: { type: Date, default: Date.now }
 
