@@ -43,16 +43,16 @@ async function createUserCart(req, res, next){
 
 }
 
+// Get Cart
+async function getUserCart(req, res, next){
+  try {
+      const cart = await Cart.findOne({userId:req.params.userId});
+      res.json({cart: cart });
+    }catch(e){
+      console.log(e);
+    }
 
-// async function createListing(req, res, next){
-//   console.log(req.body);
-// const addNew = new Listing(req.body);
-//   console.log(addNew)
-// await addNew.save();
-// res.json({ success: true });
-
-// }
-
+}
 // Update Cart
 async function updateUserCart(req, res, next){
     const entryId = req.params.userId;
@@ -87,6 +87,7 @@ async function deleteUserCart(req, res, next){
 }
   module.exports = {
     createUserCart,
+    getUserCart,
     updateUserCart,
     deleteUserCart
   };
