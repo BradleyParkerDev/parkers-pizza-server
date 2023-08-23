@@ -1,10 +1,7 @@
 const uuid = require('uuidv4');
 const Order = require('../models/Orders')
 
-
-
 //Create
-
 async function createOrder(req,res,next){
     const orderId = req.body.orderId
     const orderType = req.body.orderType
@@ -21,7 +18,6 @@ async function createOrder(req,res,next){
     const city = req.body.city
     const state = req.body.state
     const zipcode = req.body.zipcode
-
     const newOrder = new Order({
         orderId: orderId,
         orderType: orderType,
@@ -39,13 +35,8 @@ async function createOrder(req,res,next){
         specialInstructions: specialInstructions,
         total: total
     })    
-    
     try {
-
-
-
         const insertedOrder = new Order(newOrder);
-  
         await insertedOrder.save()
         res.json({ success: true, Order: insertedOrder });
 
@@ -53,7 +44,6 @@ async function createOrder(req,res,next){
         console.error(error);
     }
 }
-
 
 //Read
 async function getOrdersByUserId(req, res, next){
